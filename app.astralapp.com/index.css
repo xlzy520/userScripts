@@ -1,0 +1,14 @@
+.CodeMirror-scroll{
+  min-height: 50px!important;
+  height: 50px!important;
+}
+
+.star-info .bg-white.pin-b{
+  bottom: unset;
+}
+.CodeMirror-wrap{
+  box-shadow: 0 3px #ccc;
+}
+.repo-readme{
+  margin-top: 200px;
+}
