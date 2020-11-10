@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Stars Astralapp
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.3.2
 // @description  方便展示astralapp的笔记
 // @author       You
 // @match        https://app.astralapp.com/dashboard
@@ -31,7 +31,7 @@
     const head = $('head')
     const scriptTag = document.createElement('script')
     scriptTag.src = src
-    head.appendChild(styleTag)
+    head.appendChild(scriptTag)
   }
   
   
