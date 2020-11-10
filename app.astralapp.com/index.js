@@ -64,7 +64,7 @@
         links.forEach(link=>{
           link.target = '_blank'
         })
-      }, 500)
+      }, 1200)
       if (!isShow) {
         setTimeout(() => {
           $('.tracking-wide').click()
