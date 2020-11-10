@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Stars Astralapp
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  方便展示astralapp的笔记
 // @author       You
 // @match        https://app.astralapp.com/dashboard
