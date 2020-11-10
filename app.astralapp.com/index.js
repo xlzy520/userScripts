@@ -6,6 +6,7 @@
 // @author       You
 // @match        https://app.astralapp.com/dashboard
 // @grant        none
+// @note         增加功能：除锚点以外链接新窗口打开
 // ==/UserScript==
 
 (function() {
@@ -48,6 +49,12 @@
   let isShow = false
   setTimeout(() => {
     $('.collection-cluster').addEventListener("click", () => {
+      setTimeout(() => {
+        let links = $All('.repo-readme a:not(.anchor)')
+        links.forEach(link=>{
+          link.target = '_blank'
+        })
+      }, 500)
       if (!isShow) {
         setTimeout(() => {
           $('.tracking-wide').click()
