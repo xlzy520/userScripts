@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         GitHub Stars Astralapp
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  方便展示astralapp的笔记
 // @author       You
 // @match        https://app.astralapp.com/dashboard
 // @grant        none
 // @note         增加功能：除锚点以外链接新窗口打开
+// @note         增加功能：修复国内访问不了fontawsome的资源问题
 // ==/UserScript==
 
 (function() {
@@ -26,6 +27,13 @@
     head.appendChild(styleTag)
   }
   
+  const addScript = function (src) {
+    const head = $('head')
+    const scriptTag = document.createElement('script')
+    scriptTag.src = src
+    head.appendChild(styleTag)
+  }
+  
   
   const cssText = '.CodeMirror-scroll{\n' +
     '  min-height: 50px!important;\n' +
@@ -42,8 +50,10 @@
     '  margin-top: 120px;\n' +
     '}'
   
-  
+  const fontAwesome = 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/js/all.js'
   addStyle(cssText)
+  addScript(fontAwesome)
+  
   
   
   let isShow = false
