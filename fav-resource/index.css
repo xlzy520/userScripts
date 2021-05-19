@@ -1,0 +1,29 @@
+.lzy-select{
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lzy-people-class, .lzy-anime-class{
+  width: 90px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: rgba(255, 140, 0, .5);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.hidden{
+  display: none;
+}
+.lzy-select, .toastify{
+  z-index: 9999999999;
+}
