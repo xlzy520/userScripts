@@ -11,6 +11,8 @@
 // ==/UserScript==
 (function (w) {
   const BaseUrl = 'https://service-ijd4slqi-1253419200.gz.apigw.tencentcs.com/release/'
+  const favTags = ['IMG', 'VIDEO']
+  const isBili = location.host.includes('bilibili.com')
   let selectedImgClass = 'people'
   let resourceData = null
   const bgcMapping = {
@@ -145,9 +147,34 @@
   
   renderSelect()
   
-  document.addEventListener('dblclick', evt=> {
+  function getBackgroundImage(node) {
+    const imgInBg = node && node.style.backgroundImage
+    if (imgInBg) {
+      const match = imgInBg.match(/(?<=\").+(?=\")/)
+      return match && match.length && match[0]
+    }
+    return ''
+  }
+  
+  /***
+   *
+   * @param node
+   */
+  function shouldHandle(node) {
+    let imgInBg = ''
+    const allowTag = favTags.includes(node.nodeName)
+    // bilibili
+    // if (isBili) {
+    //   imgInBg = getBackgroundImage(node)
+    //   console.log(imgInBg);
+    // }
+    return allowTag || imgInBg
+  }
+  
+  function handleDblClick(evt) {
     const cur = evt.target
-    if (cur.nodeName === 'IMG') {
+    console.log(cur);
+    if (shouldHandle(cur)) {
       resourceData = {
         url: cur.src,
         origin: location.href
@@ -155,7 +182,7 @@
       toggleSelect(true)
     } else {
       const first = cur.firstChild
-      if (first && first.nodeName === 'IMG') {
+      if (first && shouldHandle(first)) {
         resourceData = {
           url: first.src,
           origin: location.href
@@ -165,5 +192,16 @@
         toggleSelect()
       }
     }
+  }
+  
+  if (isBili) {
+    document.addEventListener('doubleTap', evt=> {
+      handleDblClick(evt)
+    })
+  }
+  
+  
+  document.addEventListener('dblclick', evt=> {
+    handleDblClick(evt)
   })
 })();
